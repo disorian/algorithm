@@ -1,0 +1,6 @@
+{
+  "dotnet.defaultSolution": "Playground.slnx",
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.enableEditorConfigSupport": true,
+  "csharp.semanticHighlighting.enabled": true
+}
