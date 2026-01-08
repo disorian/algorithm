@@ -1,0 +1,116 @@
+services:
+  # PostgreSQL database
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: taskflow
+      POSTGRES_PASSWORD: taskflow_password
+      POSTGRES_DB: taskflow_db
+    ports:
+      - "5434:5432"
+  claude-code:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: claude-code-container-${PROJECT_NAME:-claude-trial}
+    hostname: claude-code
+
+    # Security capabilities for firewall
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+    # Use init to ensure proper process management
+    init: true
+
+    # Environment variables
+    env_file:
+      - .env
+    environment:
+      - DISPLAY=host.docker.internal:0
+      - NODE_OPTIONS=--max-old-space-size=4096 --dns-result-order=ipv4first
+      - CLAUDE_CONFIG_DIR=/home/node/.claude
+      - POWERLEVEL9K_DISABLE_GITSTATUS=true
+      - DEVCONTAINER=true
+      - CLAUDE_CODE_ENABLE_TELEMETRY=1
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://datadog-agent:4317
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+      - OTEL_LOGS_EXPORTER=otlp
+      - OTEL_LOG_USER_PROMPTS=1
+      - OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
+      - GITHUB_USERNAME=${GITHUB_USERNAME}
+      - ARTIFACTORY_USERNAME=${ARTIFACTORY_USERNAME}
+      - ARTIFACTORY_TOKEN=${ARTIFACTORY_TOKEN}
+      - REQUIRE_ARTIFACTORY=${REQUIRE_ARTIFACTORY}
+      - DATABASE_URL=postgresql://taskflow:taskflow_password@db:5432/taskflow_db
+
+    # Volume mounts
+    volumes:
+      # Workspace mount
+      - ../..:/workspace:delegated
+      # Persistent storage volumes
+      - claude-code-bashhistory:/commandhistory
+      - claude-code-config:/home/node/.claude
+      - shared-data:/shared
+      - node_modules:/workspace/node_modules
+      - pnpm-store:/home/node/.pnpm-store # ✅ Use named volume for pnpm store
+
+    # Network configuration
+    networks:
+      - devcontainer-network
+
+    depends_on: [datadog-agent, db]
+
+  datadog-agent:
+    image: ghcr.io/quantium-enterprise/genaicore-claude-code/datadog-agent:latest
+    container_name: datadog-agent-${PROJECT_NAME:-claude-trial}
+    pid: host
+    environment:
+      - DD_SITE=us5.datadoghq.com
+      - DD_LOGS_ENABLED=true
+      - DD_OTLP_CONFIG_LOGS_ENABLED=true
+      - DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT=0.0.0.0:4317
+      - DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT=0.0.0.0:4318
+      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+      - DD_PROCESS_AGENT_ENABLED=true
+      - DD_CONTAINER_EXCLUDE=name:datadog-agent
+      - DD_PROCFS_PATH=/proc
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /proc/:/host/proc/:ro
+      - datadog-run:/opt/datadog-agent/run:rw
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+    restart: unless-stopped
+    networks:
+      - devcontainer-network
+
+# Networks
+networks:
+  devcontainer-network:
+    driver: bridge
+    name: claude-code-network-${PROJECT_NAME:-claude-trial}
+
+# Volumes
+volumes:
+  # Datadog
+  datadog-run:
+    name: claude-code-datadog-${PROJECT_NAME:-claude-trial}
+  # Claude Code volumes
+  claude-code-bashhistory:
+    name: claude-code-bashhistory-${PROJECT_NAME:-claude-trial}
+  claude-code-config:
+    name: claude-code-config-${PROJECT_NAME:-claude-trial}
+  shared-data:
+    name: claude-code-shared-${PROJECT_NAME:-claude-trial}
+  # Required Postgres data volume (added)
+  postgres-data:
+    name: claude-code-postgres-${PROJECT_NAME:-claude-trial}
+  # Optional explicit definitions (avoid implicit creation)
+  node_modules:
+    name: claude-code-node-modules-${PROJECT_NAME:-claude-trial}
+  pnpm-store:
+    name: claude-code-pnpm-store-${PROJECT_NAME:-claude-trial}

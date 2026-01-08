@@ -1,0 +1,66 @@
+{
+  "name": "algorithm-q-cc",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "claude-code",
+  "workspaceFolder": "/workspace",
+  "overrideCommand": false,
+  "remoteUser": "node",
+  "containerEnv": {
+    "DISPLAY": "host.docker.internal:0",
+    "WAYLAND_DISPLAY": "",
+    "DOTNET_ROOT": "/usr/share/dotnet",
+    "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+    "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.vscodeintellicode-csharp",
+        "ms-dotnettools.vscode-dotnet-pack",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "visualstudioexptteam.vscodeintellicode"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "[csharp]": {
+          "editor.defaultFormatter": "ms-dotnettools.csharp",
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+          }
+        },
+        "dotnet.defaultSolution": "disable",
+        "omnisharp.enableRoslynAnalyzers": true,
+        "omnisharp.enableEditorConfigSupport": true,
+        "omnisharp.enableImportCompletion": true,
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        }
+      }
+    }
+  },
+  "forwardPorts": ["32768-65535", 5000, 5001],
+  "portsAttributes": {
+    "32768-65535": {
+      "label": "OAuth callbacks"
+    },
+    "5000": {
+      "label": ".NET HTTP"
+    },
+    "5001": {
+      "label": ".NET HTTPS"
+    }
+  }
+}
