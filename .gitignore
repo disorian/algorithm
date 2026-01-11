@@ -139,3 +139,5 @@ Thumbs.db
 PublishProfiles/
 *.pubxml
 *.azurePubxml
+
+.fake
