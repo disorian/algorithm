@@ -1,6 +1,6 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Playground.Console/Playground.Console.csproj" />
+    <Project Path="src/Playground.ConsoleApp/Playground.ConsoleApp.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Playground.Tests/Playground.Tests.csproj" />

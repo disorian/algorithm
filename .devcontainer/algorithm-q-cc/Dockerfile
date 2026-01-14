@@ -61,5 +61,7 @@ USER node
 RUN dotnet tool install --global dotnet-ef \
     && dotnet tool install --global dotnet-aspnet-codegenerator
 
+RUN git config --global core.editor vim
+
 # Verify .NET installation
 RUN dotnet --version

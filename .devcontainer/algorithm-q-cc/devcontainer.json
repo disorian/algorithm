@@ -18,11 +18,21 @@
         "ms-dotnettools.csdevkit",
         "ms-dotnettools.csharp",
         "ms-dotnettools.vscode-dotnet-runtime",
-        "ms-dotnettools.vscodeintellicode-csharp",
         "ms-dotnettools.vscode-dotnet-pack",
+        "ms-dotnettools.dotnet-interactive-vscode",
         "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-containers",
         "eamodio.gitlens",
-        "visualstudioexptteam.vscodeintellicode"
+        "anthropic.claude-code",
+        "github.copilot",
+        "github.copilot-chat",
+        "github.vscode-pull-request-github",
+        "ionide.ionide-fsharp",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -38,6 +48,7 @@
         "omnisharp.enableRoslynAnalyzers": true,
         "omnisharp.enableEditorConfigSupport": true,
         "omnisharp.enableImportCompletion": true,
+        "csharp.semanticHighlighting.enabled": true,
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "bash": {

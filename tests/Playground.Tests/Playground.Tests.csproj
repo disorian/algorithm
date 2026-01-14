@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Playground.Console\Playground.Console.csproj" />
+    <ProjectReference Include="..\..\src\Playground.ConsoleApp\Playground.ConsoleApp.csproj" />
   </ItemGroup>
 
 </Project>
