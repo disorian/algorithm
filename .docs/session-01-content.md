@@ -4,6 +4,50 @@
 
 ---
 
+## Table of Contents
+
+- [📚 Part 1: Modern C# Features (C# 10-14)](#-part-1-modern-c-features-c-10-14)
+  - [1.1 Records and Init-Only Properties](#11-records-and-init-only-properties)
+  - [1.2 Pattern Matching (C# 10+)](#12-pattern-matching-c-10)
+  - [1.3 LINQ (Language Integrated Query)](#13-linq-language-integrated-query)
+  - [1.4 Generics and Constraints](#14-generics-and-constraints)
+  - [1.5 Nullable Reference Types (C# 8+)](#15-nullable-reference-types-c-8)
+  - [1.6 Extension Methods](#16-extension-methods)
+  - [1.7 C# 13 Features (Released November 2024)](#17-c-13-features-released-november-2024)
+  - [1.8 C# 14 Features (Released November 2025)](#18-c-14-features-released-november-2025)
+  - [1.9 Key Takeaways: Modern C# for Algorithms](#19-key-takeaways-modern-c-for-algorithms)
+- [📊 Part 2: Big O Notation & Complexity Analysis](#-part-2-big-o-notation--complexity-analysis)
+  - [2.1 Understanding Big O Notation](#21-understanding-big-o-notation)
+  - [2.2 Analysing Time Complexity](#22-analysing-time-complexity)
+  - [2.3 Space Complexity](#23-space-complexity)
+  - [2.4 Rules for Big O Analysis](#24-rules-for-big-o-analysis)
+- [🔧 Part 3: Arrays and Lists Implementation](#-part-3-arrays-and-lists-implementation)
+  - [3.1 Understanding Arrays](#31-understanding-arrays)
+  - [3.2 Implementing a Dynamic Array (List)](#32-implementing-a-dynamic-array-list)
+- [💻 Part 4: Practice Exercises](#-part-4-practice-exercises)
+  - [Exercise 1: Array Rotation](#exercise-1-array-rotation)
+  - [Exercise 2: Remove Duplicates from Sorted Array](#exercise-2-remove-duplicates-from-sorted-array)
+  - [Exercise 3: Maximum Subarray Sum (Kadane's Algorithm)](#exercise-3-maximum-subarray-sum-kadanes-algorithm)
+  - [Exercise 4: Two Sum](#exercise-4-two-sum)
+  - [Exercise 5: Implement Dynamic Array with Tests](#exercise-5-implement-dynamic-array-with-tests)
+- [🎯 Part 5: Curated Practice Problems](#-part-5-curated-practice-problems)
+  - [Beginner Level (LeetCode Easy)](#beginner-level-leetcode-easy)
+  - [String Problems (Easy)](#string-problems-easy)
+  - [HackerRank C# Track](#hackerrank-c-track)
+- [📝 Part 6: Complexity Analysis Exercises](#-part-6-complexity-analysis-exercises)
+  - [Exercise A](#exercise-a)
+  - [Exercise B](#exercise-b)
+  - [Exercise C](#exercise-c)
+  - [Exercise D](#exercise-d)
+- [🏆 Part 7: Assessment & Next Steps](#-part-7-assessment--next-steps)
+  - [Completion Criteria](#completion-criteria)
+  - [Self-Assessment Quiz](#self-assessment-quiz)
+  - [Additional Resources](#additional-resources)
+- [📅 Estimated Timeline](#-estimated-timeline)
+- [🎓 Tips for Success](#-tips-for-success)
+
+---
+
 ## 📚 Part 1: Modern C# Features (C# 10-14)
 
 ### 1.1 Records and Init-Only Properties
